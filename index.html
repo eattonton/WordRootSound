@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>词根发音</title>
+    <style>
+        .title h1 {
+            text-align: center;
+        }
+
+        .container {
+            width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            margin: 2px 0;
+            /*上 下*/
+            padding: 8px;
+        }
+
+        .container .cell {
+            display: block;
+            margin: 2px;
+            padding: 0;
+            width: 90px;
+            height: 90px;
+            border: 1px solid #000;
+            text-align: center;
+            border-radius: 3.5px;
+            background-color: hotpink;
+        }
+
+        .container .cell span {
+            display: inline-block;
+            font: normal bold 45px arial, sans-serif;
+            color: #fff;
+            line-height: 80px;
+            margin: 0;
+            padding: 0;
+        }
+
+        .selected {
+            color: black !important;
+            background-color:cornflowerblue !important;
+            /*增加权重，否则后加属性不生效*/
+        }
+    </style>
+    <script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
+</head>
+
+<body>
+    <div class="title">
+        <h1>词根音图点读</h1>
+    </div>
+    <div class="container">
+        <div class="cell"><span>a</span></div>
+        <div class="cell"><span>d</span></div>
+        <div class="cell"><span>c</span></div>
+        <div class="cell"><span>s</span></div>
+        <div class="cell"><span>o</span></div>
+        <div class="cell"><span>f</span></div>
+        <div class="cell"><span>g</span></div>
+        <div class="cell"><span>h</span></div>
+        <div class="cell"><span>t</span></div>
+        <div class="cell"><span>r</span></div>
+        <div class="cell"><span>n</span></div>
+        <div class="cell"><span>i</span></div>
+        <div class="cell"><span>e</span></div>
+        <div class="cell"><span>m</span></div>
+        <div class="cell"><span>p</span></div>
+        <div class="cell"><span>l</span></div>
+        <div class="cell"><span>u</span></div>
+        <div class="cell"><span>j</span></div>
+        <div class="cell"><span>b</span></div>
+        <div class="cell"><span>x</span></div>
+        <div class="cell"><span>z</span></div>
+        <div class="cell"><span>v</span></div>
+        <div class="cell"><span>w</span></div>
+        <div class="cell"><span>k</span></div>
+        <div class="cell"><span>y</span></div>
+        <div class="cell"><span>qu</span></div>
+    </div>
+    <div style="width: 100%; text-align: center;">
+        <div>长按二维码，关注公众号</div>
+        <div>
+            <img src="qr.png" style="height: 115px;width:115px;"></img>
+        </div>
+    </div>
+    <div class="container">
+        <div class="cell"><span>er</span></div>
+        <div class="cell"><span>ir</span></div>
+        <div class="cell"><span>ur</span></div>
+        <div class="cell"><span>ear</span></div>
+        <div class="cell"><span>wor</span></div>
+        <div class="cell"><span>th</span></div>
+        <div class="cell"><span>sh</span></div>
+        <div class="cell"><span>ee</span></div>
+        <div class="cell"><span>ay</span></div>
+        <div class="cell"><span>ai</span></div>
+        <div class="cell"><span>ow</span></div>
+        <div class="cell"><span>ou</span></div>
+        <div class="cell"><span>oy</span></div>
+        <div class="cell"><span>oi</span></div>
+        <div class="cell"><span>ch</span></div>
+        <div class="cell"><span>au</span></div>
+        <div class="cell"><span>aw</span></div>
+        <div class="cell"><span>ng</span></div>
+        <div class="cell"><span>oo</span></div>
+        <div class="cell"><span>ew</span></div>
+        <div class="cell"><span>ui</span></div>
+        <div class="cell"><span>ea</span></div>
+        <div class="cell"><span>ar</span></div>
+        <div class="cell"><span>or</span></div>
+        <div class="cell"><span>ck</span></div>
+        <div class="cell"><span>oa</span></div>
+        <div class="cell"><span>wh</span></div>
+        <div class="cell"><span>igh</span></div>
+        <div class="cell"><span>ed</span></div>
+        <div class="cell"><span>ey</span></div>
+        <div class="cell"><span>wr</span></div>
+        <div class="cell"><span>kn</span></div>
+    </div>
+
+    <div>
+        <ul>
+            <li>程序完全免费，不含任何广告，欢迎分享。</li>
+            <li>当前版本 v1.0</li>
+            <li>微信公众号:"二头乌游戏"</li>
+            <li>email: eattonton@qq.com</li>
+            <li>Supported By TriWeb.cn</li>
+        </ul>
+    </div>
+    <audio id="audioclick"></audio>
+</body>
+<script>
+    //加载后
+    window.onload = function () {
+        //绑定按钮事件
+        $(".cell").on("click", (e) => {
+            //console.log();
+            $(".cell").removeClass("selected");
+            if ($(e.target).prop("nodeName") == "SPAN") {
+                $(e.target).parent().addClass("selected");
+            } else {
+                $(e.target).addClass("selected");
+            }
+            let strInput = $(e.target).text();
+            // console.log(strInput);
+            $("#audioclick")[0].pause();
+            $("#audioclick").attr("src", "./media/" + strInput + ".wav").load;
+            $("#audioclick")[0].play();
+        })
+    }
+</script>
+
+</html>
